@@ -1,0 +1,1 @@
+This is the repo for my CS653 course project. We are planning to make a library in haskell to support vector graphics. We are starting with basic 2D models like line, circle, rectangle and will move on to 3D models, if time permits. We will also try to add backend support like to convert the output in PDF/Post Script format , SVG format etc.

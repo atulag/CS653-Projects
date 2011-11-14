@@ -5,9 +5,9 @@ import Element
 
 
 
-writeToFile::String->[Element]->IO ()
+writeToFile::String->[Element]->(Dimension,Dimension)->IO ()
 
-writeToFile fileName elems = writeSVGStringToFile fileName $ makeFullSVGString $ getSVGStringFromElements elems
+writeToFile fileName elems dims = writeSVGStringToFile fileName $ makeFullSVGString dims $ getSVGStringFromElements elems
 
 
 	

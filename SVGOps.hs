@@ -56,12 +56,11 @@ concatSVGStrs svgstrs = SVGC . concat $ map unsvg svgstrs
 makeFullSVGString::(Dimension, Dimension)->SVG String->SVG String
 
 makeFullSVGString (DimensionC width, DimensionC height) svgstr =
-    let initial = SVGC "<svg xlmns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n"
-        svgbox = SVGC $ concat ["<svg width=\"", show (width/100), "cm\" height=\"", show (height/100), 
+    let initial = SVGC $ concat ["<svg width=\"", show (width/100), "cm\" height=\"", show (height/100), 
                                "cm\" viewBox=\"0 0 ",show width," ", show height,
                                "\" xlmns = \"http://www.w3.org/2000/svg\" version=\"1.1\">\n"]
         final = SVGC "</svg>"
-    in concatSVGStrs [initial, svgbox, svgstr, final]
+    in concatSVGStrs [initial,  svgstr, final]
 
 
 fillColor::Color->String

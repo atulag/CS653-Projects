@@ -10,15 +10,25 @@ data SVG a = SVGC {unsvg::a}
 
 getSVGStringFromElement::Element->SVG String
 
-getSVGStringFromElement (Line (PointC (x1, y1), PointC (x2, y2)) (ColorC (red, green, blue)) (WidthC width), transList) =
+getSVGStringFromElement (Line (PointC (x1, y1), PointC (x2, y2)) scolor swidth, transList) =
     SVGC $ concat ["<line x1=\"", show x1, "\" y1=\"", show y1, "\" x2=\"", show x2,
-                   "\" y2=\"", show y2, "\" style=\"stroke:rgb(", show red, " ,",
-                   show green, ", ", show blue, ");stroke-width:", show width, "\"/>", "\n"]
+                   "\" y2=\"", show y2, "\" style=\"", (strokeColor scolor), (strokeWidth swidth), "\"/>", "\n"]
 
-getSVGStringFromElement (Rect (PointC (x,y)) (DimensionC width, DimensionC height) (ColorC (red1,green1,blue1)) (ColorC (red2, green2, blue2)) (WidthC swidth), transList) =
+getSVGStringFromElement (Rect (PointC (x,y)) (DimensionC width, DimensionC height) fcolor scolor swidth, transList) =
     SVGC $ concat ["<rect x=\"", show x, "\" y =\"", show y,"\" width =\"", show width,"\" height =\"", show height,
-                   "\" style =\"fill:rgb(", show red1, ",", show green1, ",", show blue1, ");stroke:rgb(",
-                   show red2, ",", show green2, ",", show blue2, ");stroke-width:", show swidth, "\"/>", "\n"]
+                   "\" style =\"",(fillColor fcolor), (strokeColor scolor), (strokeWidth swidth), "\"/>", "\n"]
+
+
+
+
+getSVGStringFromElement ((Polyline points scolor swidth),transList) = 
+    SVGC $ concat ["<polyline fill=\"none\" style =\"",(strokeColor scolor), (strokeWidth swidth),
+                   "\" points = \"",(printPointList points),"\"/>","\n"]
+
+getSVGStringFromElement ((Polygon points fcolor scolor swidth), transList) = 
+    SVGC $ concat ["<polygon style =\"", (fillColor fcolor), (strokeColor scolor), (strokeWidth swidth),
+                   "\" points = \"", (printPointList points),"\"/>","\n"]
+
 
 getSVGStringFromElement (Group elems, transList) = getSVGStringFromElements elems
 
@@ -67,3 +77,16 @@ strokeWidth::Width->String
 
 strokeWidth (WidthC width) = 
     concat ["stroke-width:",show width]
+
+
+printPointList::[Point]->String
+
+printPointList points =
+    let pts = map printPoint points
+    in concat pts
+
+
+printPoint::Point->String
+
+printPoint (PointC (x,y)) = 
+    concat [show x, ",", show y, " "]

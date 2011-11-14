@@ -59,9 +59,10 @@ newDimension length = DimensionC length
 
 data Shape = Line (Point, Point) Color Width |
                Rect Point (Dimension, Dimension) Color Color Width |
-               Square Point Dimension Color Width |
                Circle Point Dimension Color Color Width |
                Ellipse Point Dimension Dimension Color Color Width |
+               Polyline [Point] Color Width |
+               Polygon [Point] Color Color Width |
                Group [Element]
                deriving Show
 
@@ -101,6 +102,18 @@ newEllipse::Point->Dimension->Dimension->Color->Color->Width->Element
 
 newEllipse point radiusX radiusY fillColor strokeColor strokeWidth = (Ellipse point radiusX radiusY fillColor strokeColor strokeWidth, [])
 
+
+
+newPolyline::[Point]->Color->Width->Element
+
+newPolyline points scolor swidth = (Polyline points scolor swidth, [])
+
+
+
+newPolygon::[Point]->Color->Color->Width->Element
+
+newPolygon points fcolor scolor swidth = 
+             ((Polygon points fcolor scolor swidth), [])
 
 
 newGroup::[Element]->Element

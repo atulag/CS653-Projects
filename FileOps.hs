@@ -1,6 +1,6 @@
 module FileOps where
 
-import SVGOps (SVG(SVGC), makeFullSVGString, getSVGStringFromElements)
+import SVGOps 
 import Element
 
 

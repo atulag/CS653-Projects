@@ -1,5 +1,5 @@
-module HSVG (newWidth, newColor, newPoint, newLine, newGroup, scaleMajor, scaleMinor, rotate, translate, changeStrokeColor, changeStrokeWidth, writeToFile) where
+module HSVG where
 
-import FileOps (writeToFile)
-import Transform (scaleMajor, scaleMinor, rotate, translate, changeStrokeColor, changeStrokeWidth)
-import Element (newWidth, newColor, newPoint, newLine, newGroup)
+import FileOps 
+import Transform 
+import Element 

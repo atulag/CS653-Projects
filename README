@@ -1,1 +1,12 @@
-This is the repo for my CS653 course project. We are planning to make a library in haskell to support vector graphics. We are starting with basic 2D models like line, circle, rectangle and will move on to 3D models, if time permits. We will also try to add backend support like to convert the output in PDF/Post Script format , SVG format etc.
+This is a library for making SVG files easily through Haskell functions.
+To install the library, you have to do
+
+1. cabal configure
+2. cabal build
+3. cabal install --prefix=$HOME --user
+
+and then use the library HSVG as any other Haskell library.
+
+Some sample files are given in the folder "sample" to see how to use the library after installation.
+
+Enjoy.

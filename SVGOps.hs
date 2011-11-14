@@ -32,7 +32,10 @@ getSVGStringFromElement ((Polygon points fcolor scolor swidth), transList) =
                    "\" points = \"", (printPointList points),"\"",getStringFromTransforms transList,"/>","\n"]
 
 
-getSVGStringFromElement (Group elems, transList) = getSVGStringFromElements elems
+getSVGStringFromElement (Group elems, transList) = 
+     let initstr = SVGC $ concat ["<g ", getStringFromTransforms transList, ">","\n"]
+         endstr = SVGC "</g>\n"
+     in concatSVGStrs [initstr, getSVGStringFromElements elems, endstr]
 
 
 

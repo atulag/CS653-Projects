@@ -38,7 +38,7 @@ concatSVGStrs svgstrs = SVGC . concat $ map unsvg svgstrs
 
 
 
-makeFullSVGString::(Dimension,Dimension)->SVG String->SVG String
+makeFullSVGString::(Dimension, Dimension)->SVG String->SVG String
 
 makeFullSVGString (DimensionC width, DimensionC height) svgstr =
     let initial = SVGC "<svg xlmns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n"
@@ -49,24 +49,21 @@ makeFullSVGString (DimensionC width, DimensionC height) svgstr =
     in concatSVGStrs [initial, svgbox, svgstr, final]
 
 
-fillColor::Color->SVG String
+fillColor::Color->String
 
 fillColor (ColorC (red, green, blue)) = 
-    SVGC $ concat ["fill:rgb(", show red, ",", show green, ",", show blue, ");"]
+    concat ["fill:rgb(", show red, ",", show green, ",", show blue, ");"]
 
 
 
-strokeColor:: Color->SVG String
+strokeColor::Color->String
 
 strokeColor (ColorC (red, green, blue)) =
-    SVGC $ concat ["stroke:rgb(", show red, ",", show green, ",", show blue, ");"]
+    concat ["stroke:rgb(", show red, ",", show green, ",", show blue, ");"]
 
 
 
-strokeWidth::Width->SVG String
+strokeWidth::Width->String
 
 strokeWidth (WidthC width) = 
-    SVGC $ concat ["stroke-width:",show width]
-
-
-
+    concat ["stroke-width:",show width]

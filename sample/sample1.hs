@@ -12,7 +12,9 @@ main =
             height = newDimension 500
 	    swidth = newWidth 10
 	    swidth2 = newWidth 100
+	    fwidth = newDimension 1200
+	    fheight = newDimension 500
 	    rec1 = newRectangle a (width,height) white red swidth
         in
-		writeToFile "fk.svg" [rec1]
+		writeToFile "fk.svg" [rec1] (fwidth,fheight)
 	    
